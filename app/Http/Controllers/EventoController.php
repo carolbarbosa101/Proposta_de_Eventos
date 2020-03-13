@@ -10,7 +10,7 @@ class EventoController extends Controller
     private $route = 'eventos';
     private $page = 'Eventos';
     private $paginate = 20;
-    private $search = ['name','email'];
+    private $search = ['setor_id','municipio_id','data_id','titulo','descricao','data_inicio','data_fim','local','endereco','cep','obs'];
 
     /**
      * Display a listing of the resource.
@@ -19,16 +19,18 @@ class EventoController extends Controller
      */
     public function index(Request $request)
     {
-        $columnList = ['id'=>'#','name'=>'Nome','email'=>'E-mail'];
+        $columnList = ['id'=>'#','setor_id'=>'Setor','municipop_id'=>'Municipio','data_id'=>'Data',
+        'titulo'=>'Titulo', 'descricao'=>'Descrição', 'data_inicio'=>'Data de Início', 'data_fim'=>'Data Final',
+        'data_limite'=>'Data limite','local'=>'Local', 'endereco'=>'Endereço','cep'=>'CEP', 'obs'=>'Observação'];
 
         $search = "";
         if(isset($request->search)){
           $search = $request->search;
-          $list = DB::table('users')->where('name', 'like', "%{$search}%")->get();
+          $list = DB::table('eventos')->where('setor_id', 'like', "%{$search}%")->get();
         }else{
-          $list = DB::table('users')->paginate(15);
+          $list = DB::table('eventos')->paginate(15);
         }
-
+        //dd($list)
         $page = $this->page;
 
         $routeName = $this->route;

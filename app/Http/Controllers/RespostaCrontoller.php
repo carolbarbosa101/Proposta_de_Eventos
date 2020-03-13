@@ -3,41 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\UserRepositoryInterface;
-use App\User;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class RespostaController extends Controller
 {
-
-    private $route = 'users';
-    private $page;
-    private $paginate = 2;
-    private $search = ['name','email'];
-    private $model;
-
-    public function __construct(User $model)
-    {
-        $this->page = trans('bolao.user_list');
-        $this->model = $model;
-    }
+    private $route = 'respostas';
+    private $page = 'Respostas';
+    private $paginate = 20;
+    private $search = ['setor_id','municipio_id','data_id','titulo','descricao','data_inicio','data_fim','local','endereco','cep','obs'];
 
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $columnList = ['id'=>'#','name'=>trans('bolao.name'),'email'=>trans('bolao.email')];
+        $columnList = ['id'=>'#','setor_id'=>'Setor','municipop_id'=>'Municipio','data_id'=>'Data',
+        'titulo'=>'Titulo', 'descricao'=>'Descrição', 'data_inicio'=>'Data de Início', 'data_fim'=>'Data Final',
+        'data_limite'=>'Data limite','local'=>'Local', 'endereco'=>'Endereço','cep'=>'CEP', 'obs'=>'Observação'];
 
         $search = "";
         if(isset($request->search)){
           $search = $request->search;
-          $list = $this->model->findWhereLike($this->search,$search,'id','DESC');
+          $list = DB::table('eventos')->where('setor_id', 'like', "%{$search}%")->get();
         }else{
-          $list = $this->model->paginate($this->paginate,'id','DESC');
+          $list = DB::table('eventos')->paginate(15);
         }
-
+        //dd($list)
         $page = $this->page;
 
         $routeName = $this->route;
