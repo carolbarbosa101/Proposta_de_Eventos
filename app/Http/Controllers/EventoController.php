@@ -45,7 +45,11 @@ class EventoController extends Controller
      */
     public function create()
     {
-        //
+        $routeName = $this->route;
+
+        $setores = $list = DB::table('setores')->get();
+
+        return view('admin.'.$routeName.'.create', compact('setores'));
     }
 
     /**
