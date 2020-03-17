@@ -51,6 +51,11 @@
                                         Propostas
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('secretarias.index') }}" class="nav-link">
+                                        Secretarias
+                                    </a>
+                                </li>
                             </ul>
                             @endguest
     
