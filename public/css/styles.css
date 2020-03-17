@@ -1,0 +1,34 @@
+#app {
+    min-height: calc(100vh - 128px);
+}
+.background-logo {
+    background-image: linear-gradient(to bottom, #3870bc 0%, #2362bd 100%);
+    height: 150px;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#barra-azul-content {
+    background-image: linear-gradient(to bottom, #194ca6 0%, #15428f 100%);
+    color: #fff !important;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#logo a.navbar-brand {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 36px;
+    font-weight: bold;
+    margin: auto 0;
+}
+
+footer {
+    width: 100%;
+    background-color: #0042b2;
+    padding: 26px 15px;
+}

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class EventoController extends Controller
+class RespostaController extends Controller
 {
-    private $route = 'eventos';
-    private $page = 'Eventos';
+    private $route = 'respostas';
+    private $page = 'Respostas';
     private $paginate = 20;
     private $search = ['setor_id','municipio_id','data_id','titulo','descricao','data_inicio','data_fim','local','endereco','cep','obs'];
 
@@ -45,11 +45,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        $routeName = $this->route;
-
-        $setores = $list = DB::table('setores')->get();
-
-        return view('admin.'.$routeName.'.create', compact('setores'));
+        //
     }
 
     /**

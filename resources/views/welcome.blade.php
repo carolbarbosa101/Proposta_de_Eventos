@@ -69,6 +69,7 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Página Inicial</a>
+                        <a href="{{ url('/eventos') }}">Eventos</a>
                     @else
                         <a href="{{ route('login') }}">Entrar</a>
 
@@ -81,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Cidades Digitais
+                    Eventos
                 </div>                
             </div>
         </div>

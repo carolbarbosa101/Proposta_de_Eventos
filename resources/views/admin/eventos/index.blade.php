@@ -8,11 +8,11 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light my-3 d-flex justify-content-end">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Listar eventos</li>
+                <li class="breadcrumb-item active" aria-current="page">Propostas</li>
                 </ol>
             </nav>
 
-            <h1>Gerenciando Eventos</h1>
+            <h1>Gerenciando Propostas</h1>
 
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -20,15 +20,16 @@
                 </div>
             @endif
 
-            <form class="form-inline" method="GET" action="{{route($routeName.'.index')}}">
-                <div class="form-group mb-2 mr-auto">
-                <a href="#">Cadastrar</a>
+            <form class="form-inline mb-3" method="GET" action="{{route($routeName.'.index')}}">
+                <div class="form-group mr-auto">
+                    <a href="{{route($routeName.'.create')}}" class="btn btn-primary btn-lg">Cadastrar</a>
                 </div>
-                <div class="form-group mx-sm-3 mb-2">
-                <input type="search" class="form-control" name="search" placeholder="Buscar..." value="{{$search}}">
+                <div class="form-group mx-sm-3">
+                    <input type="search" class="form-control" name="search" placeholder="Buscar..." value="{{$search}}">
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-                <a class="btn btn-secondary ml-2 mb-2" href="{{route($routeName.'.index')}}">Limpar busca</a>
+                <button type="submit" class="btn btn-outline-success">Buscar</button>
+                <a type="button" class="btn btn-outline-dark ml-2" href="{{route($routeName.'.index')}}">Limpar Busca</a>
+                
             </form>
 
 
@@ -46,8 +47,19 @@
 
                     <tr>
                     <th scope="row">{{$value->id}}</th>
-                    <td>{{$value->name}}</td>
-                    <td>{{$value->email}}</td>
+                    <td>{{$value->setor_id}}</td>
+                    <td>{{$value->municipio_id}}</td>
+                    <td>{{$value->data_id}}</td>
+                    <td>{{$value->titulo}}</td>
+                    <td>{{$value->descricao}}</td>
+                    <td>{{$value->data_inicio}}</td>
+                    <td>{{$value->data_fim}}</td>
+                    <td>{{$value->data_limite}}</td>
+                    <td>{{$value->local}}</td>
+                    <td>{{$value->endereco}}</td>
+                    <td>{{$value->cep}}</td>
+                    <td>{{$value->obs}}</td>
+
                     </tr>
                 @endforeach
 

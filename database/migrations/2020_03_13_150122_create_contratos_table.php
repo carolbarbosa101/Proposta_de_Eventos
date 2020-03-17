@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMunicipiosTable extends Migration
+class CreateContratosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateMunicipiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('municipios', function (Blueprint $table) {
+        Schema::create('contratos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 45);
-            $table->string('uf', 2);
-            $table->integer('populacao');
-            $table->string('regiao', 15);
-            $table->string('idhm', 45);
-            $table->string('latitude', 45);
-            $table->string('longitude', 45);
-            $table->string('cnpj', 45);
+            $table->unsignedBigInteger('id_tipo_contrato');
+            $table->string('descricao', 45);
+
+            $table->foreign('id_tipo_contrato')->references('id')->on('tipos_contratos');
+
             $table->timestamps();
 
             $table->engine = 'InnoDB';
@@ -36,6 +33,6 @@ class CreateMunicipiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('municipios');
+        Schema::dropIfExists('contratos');
     }
 }
