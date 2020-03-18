@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Contracts\SecretariaRepositoryInterface;
+use Validator;
 
 class SecretariaController extends Controller
 {
@@ -11,6 +14,11 @@ class SecretariaController extends Controller
     private $page = 'Secretarias';
     private $paginate = 20;
     private $search = ['id','nome','sigla','responsavel','email'];
+    private $model;
+
+    public function __construct(SecretariaRepositoryInterface $model){
+        $this->model = $model;
+    }
 
     /**
      * Display a listing of the resource.
@@ -43,9 +51,10 @@ class SecretariaController extends Controller
      */
     public function create()
     {
+        $pageName = $this->page;
         $routeName = $this->route;
 
-        return view('admin.'.$routeName.'.create',compact('routeName'));
+        return view('admin.'.$routeName.'.create',compact('pageName','routeName'));
     }
 
     /**
@@ -56,8 +65,27 @@ class SecretariaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd("ok");
+        $data= $request->all();
+
+        Validator::make($data, [
+            'nome' => 'required|string|max:100',
+            'sigla' => 'required|string|max:5',
+            'responsavel' => 'required|string|max:100',
+            'email' => 'required|string|max:100',
+        ])->validate();
+
+        if($this->model->create($data)){
+            session()->flash('msg', 'Registro adicionado com sucesso!');
+            session()->flash('status', 'success');
+            return redirect()->back();
+        }else{
+            session()->flash('msg', 'Erro ao adicionar o Registro!');
+            session()->flash('status', 'error');
+            return redirect()->back();
+        }
     }
+    
 
     /**
      * Display the specified resource.
