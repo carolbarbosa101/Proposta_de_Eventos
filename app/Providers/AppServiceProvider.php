@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Repositories\Contracts\SecretariaRepositoryInterface','App\Repositories\Eloquent\SecretariaRepository');
     }
 
     /**
@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Blade::component('components.alert', 'alert');
+        // Blade::component('components.breadcrumb', 'breadcrumb');
     }
 }
