@@ -76,12 +76,12 @@ class SecretariaController extends Controller
         ])->validate();
 
         if($this->model->create($data)){
-            session()->flash('msg', 'Registro adicionado com sucesso!');
-            session()->flash('status', 'success');
+            $request->session()->flash('msg', 'Registro adicionado com sucesso!');
+            $request->session()->flash('status', 'success');
             return redirect()->back();
         }else{
-            session()->flash('msg', 'Erro ao adicionar o Registro!');
-            session()->flash('status', 'error');
+            $request->session()->flash('msg', 'Erro ao adicionar o Registro!');
+            $request->session()->flash('status', 'error');
             return redirect()->back();
         }
     }
