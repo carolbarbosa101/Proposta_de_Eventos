@@ -41,7 +41,12 @@ class SecretariaController extends Controller
 
         $routeName = $this->route;
 
-        return view('admin.'.$routeName.'.index',compact('list','search','page','routeName','columnList'));
+        $breadcrumb= [
+            (object)['url'=>route('home'),'title'=>'Home'],
+            (object)['url'=>'','title'=>'Gerencia de Secretarias'],
+        ];
+
+        return view('admin.'.$routeName.'.index',compact('list','search','page','routeName','columnList', 'breadcrumb'));
     }
 
     /**
@@ -51,10 +56,16 @@ class SecretariaController extends Controller
      */
     public function create()
     {
-        $pageName = $this->page;
+        $page = $this->page;
         $routeName = $this->route;
 
-        return view('admin.'.$routeName.'.create',compact('pageName','routeName'));
+        $breadcrumb= [
+            (object)['url'=>route('home'),'title'=>'Home'],
+            (object)['url'=>route('secretarias.index'),'title'=>'Gerencia de Secretarias'],
+            (object)['url'=>'','title'=>'Cadastro de Secretarias'],
+        ];
+
+        return view('admin.'.$routeName.'.create',compact('page','routeName', 'breadcrumb'));
     }
 
     /**

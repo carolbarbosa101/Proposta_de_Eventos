@@ -2,17 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row py-2 justify-content-center">
         <div class="col-md-12">
 
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light my-3 d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Propostas</li>
-                </ol>
-            </nav>
+            @breadcrumb_component(['page'=>$page, 'items'=>$breadcrumb ?? []])
+            @endbreadcrumb_component
 
-            <h1>Gerenciando Propostas</h1>
+            <h1>Gerencia de Propostas</h1>
 
             @if (session('status'))
                 <div class="alert alert-success" role="alert">

@@ -35,7 +35,12 @@ class EventoController extends Controller
 
         $routeName = $this->route;
 
-        return view('admin.'.$routeName.'.index',compact('list','search','page','routeName','columnList'));
+        $breadcrumb= [
+            (object)['url'=>route('home'),'title'=>'Home'],
+            (object)['url'=>'','title'=>'Gerencia de Propostas'],
+        ];
+
+        return view('admin.'.$routeName.'.index',compact('list','search','page','routeName','columnList', 'breadcrumb'));
     }
 
     /**
@@ -47,9 +52,17 @@ class EventoController extends Controller
     {
         $routeName = $this->route;
 
+        $page = $this->page;
+
         $setores = $list = DB::table('setores')->get();
 
-        return view('admin.'.$routeName.'.create', compact('setores'));
+        $breadcrumb= [
+            (object)['url'=>route('home'),'title'=>'Home'],
+            (object)['url'=>route('eventos.index'),'title'=>'Gerencia de Secretarias'],
+            (object)['url'=>'','title'=>'Cadastro de Propostas'],
+        ];
+
+        return view('admin.'.$routeName.'.create', compact('setores', 'breadcrumb', 'page'));
     }
 
     /**
