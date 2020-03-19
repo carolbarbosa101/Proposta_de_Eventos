@@ -4,7 +4,9 @@
   <div class="container">
     <div class="row py-2">
       <div class="col-12">
-        <h3 class="py-2">Cadastrando Proposta</h3>
+        @breadcrumb_component(['page'=>$page, 'items'=>$breadcrumb ?? []])
+        @endbreadcrumb_component
+        <h3 class="py-2">Cadastro de Proposta</h3>
       </div>
         <div class="form-group col-6">
           <label for="name">Setores</label>

@@ -32,7 +32,8 @@
             <div class="container-fluid background-logo d-flex flex-column p-0">
                 <div id="logo" class="w-100 container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Eventos') }}
+                        {{-- {{ config('app.name', 'Eventos') }} --}}
+                        Proposta de Eventos
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>

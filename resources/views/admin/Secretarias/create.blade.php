@@ -6,10 +6,12 @@
     <div class="container">
         <div class="row py-2">
             <div class="col-12">
-                <h3 class="py-2">Cadastrando Secretarias</h3>
+                @breadcrumb_component(['page'=>$page, 'items'=>$breadcrumb ?? []])
+                @endbreadcrumb_component
+                <h3 class="py-2">Cadastro de Secretarias</h3>
+                @alert_component(['msg'=>session('msg'), 'status'=>session('status')])
+                @endalert_component
             </div>
-            {{-- @alert_component(['msg'=>session('msg'), 'status'=>session('status')])
-            @endalert_component --}}
             @include('admin.Secretarias.form')
         </div>
         <button class="btn btn-primary btn-lg float-right">Adicionar</button>
