@@ -8,6 +8,8 @@
             <div class="col-12">
                 <h3 class="py-2">Cadastrando Secretarias</h3>
             </div>
+            {{-- @alert_component(['msg'=>session('msg'), 'status'=>session('status')])
+            @endalert_component --}}
             @include('admin.Secretarias.form')
         </div>
         <button class="btn btn-primary btn-lg float-right">Adicionar</button>
